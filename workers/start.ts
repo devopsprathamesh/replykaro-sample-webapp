@@ -1,6 +1,6 @@
 /**
  * Worker entrypoint — run separately from the Next.js web process.
- * Usage: npx tsx workers/start.ts
+ * Usage: npm run dev:worker
  */
 import { startDmWorker } from "./dmWorker";
 import logger from "@/lib/logger";

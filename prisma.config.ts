@@ -2,11 +2,10 @@ import path from "node:path";
 import fs from "node:fs";
 import { defineConfig } from "prisma/config";
 
-// Manually load .env / .env.local since Prisma 7 CLI doesn't auto-load them
 function loadDotEnv(): void {
   const candidates = [
-    path.join(__dirname, "../.env.local"),
-    path.join(__dirname, "../.env"),
+    path.join(__dirname, ".env.local"),
+    path.join(__dirname, ".env"),
   ];
   for (const file of candidates) {
     if (!fs.existsSync(file)) continue;
@@ -30,7 +29,7 @@ const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) throw new Error("DATABASE_URL not found in .env.local or .env");
 
 export default defineConfig({
-  schema: path.join(__dirname, "schema.prisma"),
+  schema: path.join(__dirname, "prisma/schema.prisma"),
   datasource: {
     url: databaseUrl,
   },
